@@ -1,6 +1,5 @@
-import NextAuth,{NextAuthOptions} from "next-auth";
+import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github"
-import Google from "next-auth/providers/google";
 import connectDB from "@/app/Database/mongodb";
 import User from "@/app/models/User";
 const handler = NextAuth({
@@ -22,6 +21,10 @@ const handler = NextAuth({
               name: user.name,
               username: user.email.split('@')[0],
             });
+            if(!newUser){
+              console.log('Failed to created user!');
+              
+            }
             return true;
           }
         } catch (error) {

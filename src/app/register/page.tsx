@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 const Register = () => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   if (status == "authenticated") {
     return <div className='flex min-h-[80vh] justify-center items-center'>Youre signed in Already!</div>
   }

@@ -1,7 +1,7 @@
 "use client";
-import {useState} from 'react'
-import { Tilt } from 'react-tilt';
+import { useState } from 'react'
 import { Button } from './ui/button';
+import { Tilt } from "react-tilt";
 
 // react tilt library for tilt effect among images.
 const defaultOptions = {
@@ -17,24 +17,25 @@ const defaultOptions = {
 }
 
 const Frontpage = () => {
-  
+
   const [usernameResponse, setusernameResponse] = useState("Check availibility");
   const [responseColor, setresponseColor] = useState(null);
   const [userValue, setuserValue] = useState("");
-  const checkUsername = async() => {
+  const checkUsername = async () => {
     // API end point to search for existing user in the database
     try {
-      let response = await fetch("/api/check-username-availibility",{
-        method:'POST',
-        headers:{
-          'username':userValue,
+      const response = await fetch("/api/check-username-availibility", {
+        method: 'POST',
+        headers: {
+          'username': userValue,
         }
       });
-      let isAvailableUsername = await response.json();
+      const isAvailableUsername = await response.json();
       setusernameResponse(isAvailableUsername.message);
-      setresponseColor(isAvailableUsername.status); 
+      setresponseColor(isAvailableUsername.status);
+
     } catch (error) {
-      console.error("Error while fetching Data ",error);
+      console.error("Error while fetching Data ", error);
     }
   }
 
@@ -53,18 +54,18 @@ const Frontpage = () => {
       </div>
       <div className="flex flex-col gap-2 ml-10">
         <div className='flex gap-2'>
-          <input type="text" name='enteredUsername' onChange={(e)=>setuserValue(e.target.value)} value={userValue} className='w-1/3 bg-transparent border rounded-full px-3' placeholder='Enter your Username' />
+          <input type="text" name='enteredUsername' onChange={(e) => setuserValue(e.target.value)} value={userValue} className='w-1/3 bg-transparent border rounded-full px-3' placeholder='Enter your Username' />
           {/* Hit api endpoint to check if the user is available in the database. */}
-          <Button disabled={userValue.length<6} onClick={checkUsername}>Check Availibility</Button>
+          <Button disabled={userValue.length < 6} onClick={checkUsername}>Check Availibility</Button>
         </div>
-        <div className={`notifyUser ml-4 ${responseColor === null ? "text-gray-950":responseColor? "text-green-500":"text-red-500"}`}>{usernameResponse}</div>
+        <div className={`notifyUser ml-4 ${responseColor === null ? "text-gray-950" : responseColor ? "text-green-500" : "text-red-500"}`}>{usernameResponse}</div>
       </div>
       {/* next section, view your visits */}
       <div className='bg-green-900 py-5 mt-10'>
         <div className="flex flex-col md:flex-row py-10">
           <div className="section1 text-xl md:text-3xl xl:text-4xl w-full xl:ml-5 mx-3 leading-tight md:leading-normal xl:leading-relaxed flex flex-col">
             <div>
-            Share your <span className="font-bold">FollowTree</span> on any Platform, Find your audience, generate QR code for your follow tree.
+              Share your <span className="font-bold">FollowTree</span> on any Platform, Find your audience, generate QR code for your follow tree.
             </div>
             <div className="w-1/2"><Button className='w-full'>Get started for free</Button></div>
           </div>
@@ -74,9 +75,9 @@ const Frontpage = () => {
             </Tilt>
           </div>
         </div>
-          
+
       </div>
-    </div>  
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const userWebsite = () => {
+const UserWebsite = () => {
   // return early and show 404 page if there is no user in the database
 
   return (
@@ -8,4 +8,4 @@ const userWebsite = () => {
   )
 }
 
-export default userWebsite
+export default UserWebsite

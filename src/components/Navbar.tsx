@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 import DropMenu from "./DropMenu";
 const Navbar = () => {
     const router = useRouter();
-    const {data:session,status} = useSession();
+    const { status } = useSession();
     return (
         <nav className="bg-white sticky top-3 z-[50] text-black flex justify-between items-center rounded-full px-6 w-10/12 md:w-4/5 mx-auto py-4 my-6">
             <div className="flex">

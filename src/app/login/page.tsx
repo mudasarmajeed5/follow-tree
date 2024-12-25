@@ -7,10 +7,14 @@ import Link from 'next/link';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 const Login = () => {
   const { data: session, status } = useSession();
+
   if (status == "authenticated") {
-    return <div className='flex min-h-[80vh] justify-center items-center'>Youre signed in Already!</div>
+    return <div className='flex min-h-[80vh] justify-center items-center'>
+      <img src={session?.user?.image || ''} width={150} alt="" />
+      Youre signed in Already!
+    </div>
   }
-  return (  
+  return (
     <div className='flex min-h-[80vh] justify-center items-center'>
       <Card>
         <CardHeader>
